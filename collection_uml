@@ -1,0 +1,33 @@
+digraph Collection_UML {
+	rankdir=TB
+	node [fillcolor=lightgray fontname=Helvetica shape=record style=filled]
+	Artifact [label="{
+        Artifact|
+        - title: str\l
+        - date: str\l
+        - url: str\l
+        - creators: list[str]\l|
+        + __init__(data)\l
+        }"]
+	Artist [label="{
+        Artist|
+        - name: str\l
+        - nationality: str\l
+        - artifacts: list(Artifact)\l|
+        + __init__(creator)\l
+        + __str__()\l
+        }"]
+	Collection [label="{
+        Collection|
+        - artifacts: list(Artifact)\l
+        - artists: list(Artist)\l
+        - raw_data: any\l|
+        + __init__()\l
+        + parse_raw_data(data)\l
+        + add_artifact(artifact)\l
+        + add_artist(artist)\l
+        }"]
+	Artist -> Artifact [label="1..*" arrowhead=diamond]
+	Collection -> Artifact [label="0..*" arrowhead=diamond]
+	Collection -> Artist [label="0..*" arrowhead=diamond]
+}
